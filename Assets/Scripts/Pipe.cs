@@ -10,5 +10,12 @@ public class Pipe : MonoBehaviour
     {
         transform.position += Vector3.left * (speed * Time.fixedDeltaTime);
     }
-    
+
+    public IEnumerator DeactivateAndReturnToQueue(float time, Queue<GameObject> queue)
+    {
+        yield return new WaitForSecondsRealtime(time);
+        GameObject pipe = gameObject;
+        pipe.SetActive(false);
+        queue.Enqueue(pipe);
+    }
 }

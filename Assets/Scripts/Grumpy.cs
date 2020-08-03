@@ -7,6 +7,9 @@ public class Grumpy : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private float gravityMultiplier;
 
+    public event Action OnHitPipe;
+    public event Action OnUpdateScore;
+    
     private bool _willJump;
 
     private void Start()
@@ -37,7 +40,15 @@ public class Grumpy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Hit Detected!");
+        if (other.CompareTag("Pipe"))
+        {
+            OnHitPipe?.Invoke();
+        }
+        if (other.CompareTag("Score"))
+        {
+            OnUpdateScore?.Invoke();
+        }
+        
     }
 
     private void OnDisable()

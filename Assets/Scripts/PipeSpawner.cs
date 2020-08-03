@@ -3,16 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Object = System.Object;
+using Random = System.Random;
 
 public class PipeSpawner : MonoBehaviour
 {
     [SerializeField] private float timeBetweenSpawns;
     [SerializeField] private int numberOfPipes;
     [SerializeField] private GameObject pipe;
-
+    [SerializeField] private float yOffsetRange;
+    [SerializeField] private float pipeKillTime;
+    
     private Queue<GameObject> _pipeQueue; 
     
     private void Start()
+    {
+        CreateAndQueuePipes();
+        SpawnPipe();
+    }
+
+    private void CreateAndQueuePipes()
     {
         _pipeQueue = new Queue<GameObject>(numberOfPipes);
         for (int i = 0; i < numberOfPipes; i++)
@@ -30,8 +39,15 @@ public class PipeSpawner : MonoBehaviour
 
     private IEnumerator WaitAndSpawnPipe()
     {
-        GameObject childPipe = _pipeQueue.Dequeue();
-        childPipe.SetActive(true);
         yield return new WaitForSecondsRealtime(timeBetweenSpawns);
+        GameObject childPipe = _pipeQueue.Dequeue();
+        float randomOffset = UnityEngine.Random.Range(-yOffsetRange, yOffsetRange);
+        Vector3 newPosition = gameObject.transform.position + new Vector3(0,randomOffset,0);
+        childPipe.transform.position = newPosition;
+        childPipe.SetActive(true);
+        Pipe pipeScript = childPipe.GetComponent<Pipe>();
+        /*Starts a coroutine that disables and enques the pipe to the _pipeQueue*/
+        if (pipeScript) StartCoroutine(pipeScript.DeactivateAndReturnToQueue(pipeKillTime, _pipeQueue));
+        SpawnPipe();
     }
 }

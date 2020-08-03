@@ -13,14 +13,22 @@ public class PipeSpawner : MonoBehaviour
     [SerializeField] private float yOffsetRange;
     [SerializeField] private float pipeKillTime;
     
-    private Queue<GameObject> _pipeQueue; 
-    
+    private Queue<GameObject> _pipeQueue;
+    private Grumpy _grumpy;
+
     private void Start()
     {
+        _grumpy = FindObjectOfType<Grumpy>();
+        _grumpy.OnHitPipe += StopPipeCoroutines;
         CreateAndQueuePipes();
         SpawnPipe();
     }
 
+    private void StopPipeCoroutines()
+    {
+        StopAllCoroutines();
+    }
+    
     private void CreateAndQueuePipes()
     {
         _pipeQueue = new Queue<GameObject>(numberOfPipes);

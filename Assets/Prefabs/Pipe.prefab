@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b824f4da4704adb4eb6f5e5861c3cfa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  speed: 20
 --- !u!1 &6291288220253471317
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 6291288220253471318}
   - component: {fileID: 6291288220253471319}
   - component: {fileID: 6291288220253471316}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PipeBottom
   m_TagString: Pipe
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.18413639}
@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 6291288220891813282}
   - component: {fileID: 6291288220891813283}
   - component: {fileID: 6291288220891813280}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PipeTop
   m_TagString: Pipe
   m_Icon: {fileID: 0}
@@ -304,7 +304,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.18413639}

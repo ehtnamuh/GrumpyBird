@@ -827,7 +827,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1733766802}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 59.9, y: 1.6, z: 0}
+  m_LocalPosition: {x: 46.5, y: 1.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -845,7 +845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8b19dd2250000c4a96356923edbdbde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenSpawns: 1.5
+  timeBetweenSpawns: 1
   numberOfPipes: 12
   pipe: {fileID: 861835191199955985, guid: bc60b2ae17385574195567e8784e5dbf, type: 3}
   yOffsetRange: 8
@@ -1086,15 +1086,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2239695978724967169, guid: c179893e2223fee468c1c1018e733740,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2239695978724967171, guid: c179893e2223fee468c1c1018e733740,
         type: 3}
       propertyPath: m_Name
       value: Grumpy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239695978724967228, guid: c179893e2223fee468c1c1018e733740,
+        type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239695978724967228, guid: c179893e2223fee468c1c1018e733740,
+        type: 3}
+      propertyPath: m_UseFullKinematicContacts
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2239695978724967230, guid: c179893e2223fee468c1c1018e733740,
         type: 3}
@@ -1150,6 +1155,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239695978724967231, guid: c179893e2223fee468c1c1018e733740,
+        type: 3}
+      propertyPath: jumpForce
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239695978724967231, guid: c179893e2223fee468c1c1018e733740,
+        type: 3}
+      propertyPath: rayCastLength
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239695978724967231, guid: c179893e2223fee468c1c1018e733740,
+        type: 3}
+      propertyPath: rayCastCount
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239695978724967231, guid: c179893e2223fee468c1c1018e733740,
+        type: 3}
+      propertyPath: rayCastAngleRangeDegrees
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239695978724967231, guid: c179893e2223fee468c1c1018e733740,
+        type: 3}
+      propertyPath: gravityMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239695978724967231, guid: c179893e2223fee468c1c1018e733740,
+        type: 3}
+      propertyPath: birdGravity
+      value: -8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c179893e2223fee468c1c1018e733740, type: 3}

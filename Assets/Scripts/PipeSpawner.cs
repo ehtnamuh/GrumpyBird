@@ -34,7 +34,7 @@ public class PipeSpawner : MonoBehaviour
         _pipeQueue = new Queue<GameObject>(numberOfPipes);
         for (int i = 0; i < numberOfPipes; i++)
         {
-            GameObject childPipe = Instantiate(pipe, gameObject.transform, true);
+            var childPipe = Instantiate(pipe, gameObject.transform, true);
             childPipe.SetActive(false);
             _pipeQueue.Enqueue(childPipe);
         }
@@ -48,9 +48,9 @@ public class PipeSpawner : MonoBehaviour
     private IEnumerator WaitAndSpawnPipe()
     {
         yield return new WaitForSecondsRealtime(timeBetweenSpawns);
-        GameObject childPipe = _pipeQueue.Dequeue();
-        float randomOffset = UnityEngine.Random.Range(-yOffsetRange, yOffsetRange);
-        Vector3 newPosition = gameObject.transform.position + new Vector3(0,randomOffset,0);
+        var childPipe = _pipeQueue.Dequeue();
+        var randomOffset = UnityEngine.Random.Range(-yOffsetRange, yOffsetRange);
+        var newPosition = gameObject.transform.position + new Vector3(0,randomOffset,0);
         childPipe.transform.position = newPosition;
         childPipe.SetActive(true);
         Pipe pipeScript = childPipe.GetComponent<Pipe>();

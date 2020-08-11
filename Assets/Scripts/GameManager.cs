@@ -45,4 +45,6 @@ public class GameManager : MonoBehaviour
                 _scoreTextReference.text = _score.ToString();
                 Debug.Log($"Score {_score}");
         }
+
+        public int GetScore() => _score;
 }

@@ -14,7 +14,7 @@ public class Pipe : MonoBehaviour
     public IEnumerator DeactivateAndReturnToQueue(float time, Queue<GameObject> queue)
     {
         yield return new WaitForSecondsRealtime(time);
-        GameObject pipe = gameObject;
+        var pipe = gameObject;
         pipe.SetActive(false);
         queue.Enqueue(pipe);
     }

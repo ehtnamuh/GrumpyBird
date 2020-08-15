@@ -19,6 +19,8 @@ public class InputHandler : MonoBehaviour
         }
     }
 
+    public void InvokeOnJump() => OnJump?.Invoke();
+
     private void Update()
     {
         if (Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space))

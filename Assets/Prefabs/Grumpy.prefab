@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7603434836880391949}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: CastPoint
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 2239695978724967231}
   - component: {fileID: 2239695978724967228}
   - component: {fileID: 4728922732794588476}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Grumpy
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -147,13 +147,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae03266beac8bcf4dbeed791545add6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  birdGravity: -9.8
-  jumpForce: 300
-  gravityMultiplier: 2.5
+  birdGravity: -8
+  jumpForce: 600
+  gravityMultiplier: 2
   castPoint: {fileID: 1799532172664951781}
-  rayCastLength: 100
-  rayCastCount: 3
-  rayCastAngleRangeDegrees: 90
+  rayCastLength: 15
+  rayCastCount: 12
+  rayCastAngleRangeDegrees: 359
 --- !u!50 &2239695978724967228
 Rigidbody2D:
   serializedVersion: 4
@@ -164,7 +164,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 2239695978724967171}
   m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
@@ -188,6 +188,6 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.28291035, y: 0.80831337}
+  m_Offset: {x: 0.28, y: 0.8}
   serializedVersion: 2
-  m_Radius: 1.8058252
+  m_Radius: 1.8

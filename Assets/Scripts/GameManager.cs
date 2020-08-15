@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -8,7 +9,9 @@ public class GameManager : MonoBehaviour
         public GameObject scoreCanvas;
         private Grumpy _grumpy;
         private int _score;
+        private bool _gameEnded = false;
         private Text _scoreTextReference;
+        public event Action OnGameEnd;
 
         private void Start()
         {
@@ -24,6 +27,7 @@ public class GameManager : MonoBehaviour
 
         private void GameOver()
         {
+                OnGameEnd?.Invoke();
                 gameOverCanvas.SetActive(true);
                 Time.timeScale = 0; // pauses game
         }
@@ -43,8 +47,10 @@ public class GameManager : MonoBehaviour
         { 
                 _score++;
                 _scoreTextReference.text = _score.ToString();
-                Debug.Log($"Score {_score}");
+                // Debug.Log($"Score {_score}");
         }
 
         public int GetScore() => _score;
+
+        public bool HasGameEnded() => _gameEnded;
 }

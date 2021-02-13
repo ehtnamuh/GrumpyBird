@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Object = System.Object;
-using Random = System.Random;
 
 public class PipeSpawner : MonoBehaviour
 {
@@ -24,15 +21,12 @@ public class PipeSpawner : MonoBehaviour
         SpawnPipe();
     }
 
-    private void StopPipeCoroutines()
-    {
-        StopAllCoroutines();
-    }
-    
+    private void StopPipeCoroutines() => StopAllCoroutines();
+
     private void CreateAndQueuePipes()
     {
         _pipeQueue = new Queue<GameObject>(numberOfPipes);
-        for (int i = 0; i < numberOfPipes; i++)
+        for (var i = 0; i < numberOfPipes; i++)
         {
             var childPipe = Instantiate(pipe, gameObject.transform, true);
             childPipe.SetActive(false);
@@ -40,16 +34,13 @@ public class PipeSpawner : MonoBehaviour
         }
     }
 
-    private void SpawnPipe()
-    {
-        StartCoroutine(WaitAndSpawnPipe());
-    }
+    private void SpawnPipe() => StartCoroutine(WaitAndSpawnPipe());
 
     private IEnumerator WaitAndSpawnPipe()
     {
         yield return new WaitForSecondsRealtime(timeBetweenSpawns);
         var childPipe = _pipeQueue.Dequeue();
-        var randomOffset = UnityEngine.Random.Range(-yOffsetRange, yOffsetRange);
+        var randomOffset = Random.Range(-yOffsetRange, yOffsetRange);
         var newPosition = gameObject.transform.position + new Vector3(0,randomOffset,0);
         childPipe.transform.position = newPosition;
         childPipe.SetActive(true);

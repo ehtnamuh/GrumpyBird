@@ -6,10 +6,7 @@ public class Pipe : MonoBehaviour
 {
     [SerializeField] private float speed;
 
-    private void FixedUpdate()
-    {
-        transform.position += Vector3.left * (speed * Time.fixedDeltaTime);
-    }
+    private void FixedUpdate() => transform.position += Vector3.left * (speed * Time.fixedDeltaTime);
 
     public IEnumerator DeactivateAndReturnToQueue(float time, Queue<GameObject> queue)
     {

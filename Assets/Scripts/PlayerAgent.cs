@@ -1,7 +1,5 @@
-﻿using System;
-using Unity.MLAgents;
+﻿using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
-using UnityEngine;
 
 public class PlayerAgent : Agent
 {
@@ -18,19 +16,20 @@ public class PlayerAgent : Agent
     private void ResetGame()
     {
         AddReward(-10);
-        _gameManager.Replay();
+        // _gameManager.Replay();
     }
 
 
     public override void OnEpisodeBegin()
     {
-        SetReward(0);
+        
     }
     
     public override void CollectObservations(VectorSensor sensor)
     {
         // Debug.Log("Collecting observations");
-        var observations = _grumpy.GetObservations();
+        var observations = _grumpy.rayCastObserver.GetObservations();
+        if(observations == null) return; 
         foreach (var obs in observations)
             sensor.AddObservation(obs);
     }
@@ -38,18 +37,16 @@ public class PlayerAgent : Agent
     
     public override void OnActionReceived(float[] vectorAction)
     {
-        Debug.Log(vectorAction[0]);
+        // Debug.Log(vectorAction[0]);
         // 1 = Flap |  2 = Don't Flap
         var x = vectorAction[0];
         if (x > 0.0f) InputHandler.Instance.InvokeOnJump();
         SetReward(_gameManager.GetScore());
-        if (_gameManager.HasGameEnded()) _gameManager.Replay();
     }
 
-    public override void Heuristic(float[] actionsOut)
+    protected override void OnDisable()
     {
-        // Allows normal control without neural network
-        base.Heuristic(actionsOut);
+        base.OnDisable();
+        _gameManager.OnGameEnd -= ResetGame;
     }
-    
 }

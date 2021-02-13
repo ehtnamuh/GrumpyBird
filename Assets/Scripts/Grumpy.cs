@@ -8,22 +8,29 @@ public class Grumpy : MonoBehaviour
     [SerializeField] private float gravityMultiplier;
 
     [SerializeField] public RayCastObserver rayCastObserver;
-    
-    private float screenHeight;
+    private float screenTop;
+    private float screenBottom;
     public event Action OnHitPipe;
     public event Action OnUpdateScore;
     
     private bool _willJump;
-
+    private Rigidbody2D grumpyRigidbody;
 
     private void Start()
     {
-        screenHeight = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0)).y;
+        grumpyRigidbody = gameObject.GetComponent<Rigidbody2D>();
+        screenTop = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0)).y;
+        screenBottom = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).y;
+        gameObject.transform.position = new Vector3(-5, 0, 0);
         InputHandler.Instance.OnJump += Jump;
     }
     
     // Function to bind to OnJump Event
-    private void Jump() => _willJump = true;
+    private void Jump()
+    {
+        _willJump = true;
+    }
+
 
     #region Initialization
 
@@ -32,9 +39,15 @@ public class Grumpy : MonoBehaviour
     
     private void FixedUpdate()
     {
+        // if (Input.GetKeyDown(KeyCode.Mouse0))
+        // {
+        //     Debug.Log("here aight");
+        //     grumpyRigidbody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+        // }
         CalculateRelativeForceOnBird();
         rayCastObserver.CheckRayCasts();
-        if (gameObject.transform.position.y > screenHeight) OnHitPipe?.Invoke();
+        if (gameObject.transform.position.y > screenTop) OnHitPipe?.Invoke();
+        if (gameObject.transform.position.y < screenBottom) OnHitPipe?.Invoke();
     }
 
     #region Bird Physics
@@ -42,11 +55,11 @@ public class Grumpy : MonoBehaviour
     // Bird Physics
     private void CalculateRelativeForceOnBird()
     {
-        var velocityMultiplier = gravityMultiplier * Time.fixedDeltaTime;
+        var velocityMultiplier = gravityMultiplier * Time.unscaledDeltaTime;
         Vector3 velocity;
         if (_willJump)
         {
-            velocity = velocityMultiplier * new Vector3(0, jumpForce + birdGravity, 0);
+            velocity =  new Vector3(0, jumpForce + birdGravity, 0) * velocityMultiplier;
             _willJump = false;
         }
         else

@@ -38,6 +38,7 @@ public class PipeSpawner : MonoBehaviour
 
     private IEnumerator WaitAndSpawnPipe()
     {
+        var tTimeBetweenSpawns = timeBetweenSpawns * Time.unscaledDeltaTime;
         yield return new WaitForSecondsRealtime(timeBetweenSpawns);
         var childPipe = _pipeQueue.Dequeue();
         var randomOffset = Random.Range(-yOffsetRange, yOffsetRange);
@@ -46,6 +47,7 @@ public class PipeSpawner : MonoBehaviour
         childPipe.SetActive(true);
         Pipe pipeScript = childPipe.GetComponent<Pipe>();
         /*Starts a coroutine that disables and enques the pipe to the _pipeQueue*/
+        var tPipeKillTime = pipeKillTime * Time.unscaledDeltaTime;
         if (pipeScript) StartCoroutine(pipeScript.DeactivateAndReturnToQueue(pipeKillTime, _pipeQueue));
         SpawnPipe();
     }

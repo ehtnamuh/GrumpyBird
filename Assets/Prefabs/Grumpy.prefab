@@ -43,9 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca09e6d53442495492ead0d70e33a9c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayCastCount: 8
+  rayCastCount: 12
   rayCastAngleRangeDegrees: 359
-  rayCastLength: 12
+  rayCastLength: 20
 --- !u!1 &2239695978724967171
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,7 +75,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2239695978724967171}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7603434836880391949}
@@ -163,9 +163,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae03266beac8bcf4dbeed791545add6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  birdGravity: -8
+  birdGravity: -6
   jumpForce: 200
-  gravityMultiplier: 1
+  gravityMultiplier: 2
   rayCastObserver: {fileID: 8084156178329873633}
 --- !u!50 &2239695978724967228
 Rigidbody2D:

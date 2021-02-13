@@ -11,12 +11,15 @@ public class PlayerAgent : Agent
         _gameManager = FindObjectOfType<GameManager>();
         _grumpy = gameObject.GetComponentInChildren<Grumpy>();
         _gameManager.OnGameEnd += ResetGame;
+        _grumpy.OnHitPipe += KillBird;
     }
+
+    private void KillBird() => EndEpisode();
 
     private void ResetGame()
     {
         AddReward(-10);
-        // _gameManager.Replay();
+        _gameManager.Replay();
     }
 
 
@@ -27,7 +30,6 @@ public class PlayerAgent : Agent
     
     public override void CollectObservations(VectorSensor sensor)
     {
-        // Debug.Log("Collecting observations");
         var observations = _grumpy.rayCastObserver.GetObservations();
         if(observations == null) return; 
         foreach (var obs in observations)
@@ -41,7 +43,8 @@ public class PlayerAgent : Agent
         // 1 = Flap |  2 = Don't Flap
         var x = vectorAction[0];
         if (x > 0.0f) InputHandler.Instance.InvokeOnJump();
-        SetReward(_gameManager.GetScore());
+        AddReward(0.02f);
+        AddReward(_gameManager.GetScore());
     }
 
     protected override void OnDisable()

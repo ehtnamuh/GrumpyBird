@@ -1,4 +1,4 @@
 # GrumpyBird
-Flappy bird clone in Unity
+A Flappy bird clone in Unity
 
 ![Screenshot](GrumpyBird.png)
